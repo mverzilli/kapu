@@ -42,18 +42,18 @@ body.each_with_index do |l, i|
 
   if try_san_fernando
     san_fernando = try_san_fernando
-    san_fernando_line = i - 2
+    san_fernando_line = i
   end  
 end
 
-puerto_sf = body[san_fernando_line] if san_fernando_line
-
 if san_fernando
+  i = san_fernando_line - 1
+  while i >= 0 
+    puerto_sf ||= parse body[i], "PUERTO"
+    i = i - 1
+  end
+
   report = "#{date}\n#{validity}\n#{puerto_sf}\n#{san_fernando}"
   send_simple_message report
 end
-
-
-
-
     
